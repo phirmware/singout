@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<!--
+	Miniport by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Miniport by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul class="container">
+            <li><a href="/">Home</a></li>
+            <li><a href="/upload">Upload</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home -->
+    <article id="top" class="wrapper style1">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-12-large col-12-medium">
+                    <header>
+                        <h1><strong>
+                                <%= song.title %></strong>.</h1>
+                    </header>
+                    <p>Posted by <strong>
+                            <%= song.username %></strong></p>
+                    <audio style="display:none" id="music" controls>
+                        <source src="<%= song.song %>" type="audio/ogg">
+                        Your browser does not support the audio tag.
+                    </audio>
+                    <button id="pButton" class="play" onclick="playAudio()">play</button>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Work -->
+    <article id="work" class="wrapper style2">
+        <div class="container">
+            <header>
+                <h2><%= song.short_description %></h2>
+                <p><%= song.long_description %></p>
+            </header>
+            <footer>
+                <p>Donate to the platform</p>
+                <a href="#portfolio" class="button large scrolly">Donate</a>
+                <p>made by phirmware</p>
+            </footer>
+        </div>
+    </article>
+
+    <script>
+        // variable to store HTML5 audio element
+        var music = document.getElementById('music');
+        var pButton = document.getElementById('pButton'); 
+        function playAudio() {
+            if (music.paused) {
+                music.play();
+                pButton.innerHTML = "Playing";
+            } else {
+                music.pause();
+                pButton.innerHTML = "Paused";
+            }
+        }
+    </script>
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>
