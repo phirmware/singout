@@ -13,9 +13,63 @@
 	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
 	<link rel="stylesheet" href="assets/css/main.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <style>
+      /* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.display{
+    display: none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+    </style>
 </head>
 
 <body class="is-preload">
+
+    <div id="loader" class="display"></div>
 
     <!-- Nav -->
 	<nav id="nav">
@@ -31,29 +85,30 @@
 				<div class="container medium">
 					<header>
 						<h2>Upload your music.</h2>
-						<p>Complete all requirements.</p>
+                        <p>Complete all requirements.</p>
+                        <p style="color:rgb(238, 15, 127)">Maximum size of music 4mb</p>
 					</header>
 					<div class="row">
 						<div class="col-12">
 							<form method="post" action="/upload" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-6 col-12-small">
-										<input type="text" style="background:white"  name="name" id="name" placeholder="username" />
+										<input type="text" style="background:white" required  name="name" id="name" placeholder="username" />
 									</div>
 									<div class="col-6 col-12-small">
-										<input type="text" style="background:white"  name="title" id="email" placeholder="Song Title" />
+										<input type="text" style="background:white" required name="title" id="email" placeholder="Song Title" />
                                     </div>
                                     <div class="col-6 col-12-small">
-                                            <input type="file" name="song" id="name" style="background:white;padding: 12px;border-radius: 5px" placeholder="Upload song" />
+                                            <input type="file" name="song" id="name" required style="background:white;padding: 12px;border-radius: 5px" placeholder="Upload song" />
                                         </div>
                                         <div class="col-6 col-12-small">
-                                                <input type="text" style="background:white" name="genres" id="name" placeholder="Genres seperated by comma" />
+                                                <input type="text" style="background:white" required name="genres" id="name" placeholder="Genres seperated by comma" />
                                         </div>
 									<div class="col-12">
-										<input style="background:white" type="text" maxlength="100" name="short_description" id="subject" placeholder="Short Description max 100 characters" />
+										<input style="background:white" type="text" required maxlength="100" name="short_description" id="subject" placeholder="Short Description max 100 characters" />
 									</div>
 									<div class="col-12">
-										<textarea style="background:white" name="long_description" id="message" placeholder="Long Description"></textarea>
+										<textarea style="background:white" required name="long_description" id="message" placeholder="Long Description"></textarea>
 									</div>
 									<div class="col-12">
 										<ul class="actions">
@@ -105,7 +160,7 @@
 	<script>
 	  new WOW().init();
 	</script>
-	<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>

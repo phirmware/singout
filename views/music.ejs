@@ -7,13 +7,15 @@
 <html>
 
 <head>
-    <title>Miniport by HTML5 UP</title>
+    <title>SingOut</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
-<body class="is-preload">
+<body class="is-preload" #0e2439 style="background:#0e2439">
 
     <!-- Nav -->
     <nav id="nav">
@@ -27,18 +29,31 @@
     <article id="top" class="wrapper style1">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-12-large col-12-medium">
+                <div class="col-4 col-5-large col-12-medium">
+                    <span class="image fit"><img src="/images/one.jpg" alt="" /></span>
+                </div>
+                <div class="col-8 col-7-large col-12-medium">
                     <header>
-                        <h1><strong>
+                        <h1><strong style="color:white;">
                                 <%= song.title %></strong>.</h1>
                     </header>
-                    <p>Posted by <strong>
+                    <p style="color:white;">Posted by <strong>
                             <%= song.username %></strong></p>
+                    <p style="color:#4799eb">Enjoying the<strong class="animated fadeInDown slow infinite" style="color:yellow">
+                            Music
+                        </strong><span style="color:yellow;font-weight: bolder">|</span> Let us <strong class="animated fadeInDown slow delay-1s infinite"
+                            style="color:yellow">
+                            Know </strong><span style="color:yellow;font-weight: bolder">|</span> Likes <strong class="animated fadeInDown"
+                            style="color:yellow">
+                            <a><span id="likes" onclick="like()" style="cursor:pointer;color: pink" class="icon fa-thumbs-o-up">
+                                    <%= song.likes %></span></a></a></strong></p>
                     <audio style="display:none" id="music" controls>
                         <source src="<%= song.song %>" type="audio/ogg">
                         Your browser does not support the audio tag.
                     </audio>
-                    <button id="pButton" class="play" onclick="playAudio()">play</button>
+                    <button style="background:yellow" id="pButton" class="play" onclick="playAudio()">Play</button>
+                </div>
+                <div class="col-12 col-9-large col-12-medium" style="text-align:center">
                 </div>
             </div>
         </div>
@@ -48,13 +63,23 @@
     <article id="work" class="wrapper style2">
         <div class="container">
             <header>
-                <h2><%= song.short_description %></h2>
-                <p><%= song.long_description %></p>
+                <h2>
+                    <%= song.short_description %>
+                </h2>
+                <p>
+                    <%= song.long_description %>
+                </p>
             </header>
+            <hr>
             <footer>
+                <!-- <p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p> -->
+                <a href="/songs" class="button large scrolly">Back</a>
+            </footer>
+            <hr>
+            <footer style="margin-bottom:4px;">
                 <p>Donate to the platform</p>
                 <a href="#portfolio" class="button large scrolly">Donate</a>
-                <p>made by phirmware</p>
+                <p>made by <a target="blank" href="https://twitter.com/phirmware">@phirmware</a></p>
             </footer>
         </div>
     </article>
@@ -62,7 +87,7 @@
     <script>
         // variable to store HTML5 audio element
         var music = document.getElementById('music');
-        var pButton = document.getElementById('pButton'); 
+        var pButton = document.getElementById('pButton');
         function playAudio() {
             if (music.paused) {
                 music.play();
@@ -71,6 +96,16 @@
                 music.pause();
                 pButton.innerHTML = "Paused";
             }
+        }
+
+
+        function like() {
+            $.get('/api/like/<%= song._id %>').then(res => {
+                if (res['statusCode'] == 200) {
+                    var initialNumber = document.querySelector('#likes').textContent;    
+                    document.querySelector('#likes').innerHTML = Number(initialNumber) + 1
+                }
+            });
         }
     </script>
     <!-- Scripts -->

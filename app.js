@@ -14,6 +14,7 @@ const localStrategy = require("passport-local").Strategy;
 const async = require('async');
 // const crypto = require('crypto');
 const AuthController = {};
+var likeRoute = require('./routes/likes');
 
 passport.use(new localStrategy(db.user.authenticate()));
 passport.serializeUser(db.user.serializeUser());
@@ -33,6 +34,8 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use('/api/like',likeRoute);
 
 //secret code password = 'Tmx8Y=fEn!A2KF=5cU2#&UaHMJweeUcTSWN5-6pXTUEHpu?Yhv';
 
@@ -103,7 +106,7 @@ AuthController.login = async (req, res) => {
             if (err || !user) {
                 res.redirect('/login');
             }
-            req.login(user, { session: false }, (err) => {
+            req.login(user, { session: true }, (err) => {
                 if (err) {
                     res.send(err);
                 }
@@ -116,7 +119,7 @@ AuthController.login = async (req, res) => {
     }
 };
 
-app.get('/upload', (req, res) => {
+app.get('/upload',isLoggedIn, (req, res) => {
     res.render('upload');
 });
 
@@ -134,32 +137,31 @@ const storage = multer.diskStorage({
 // initialize upload
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 10000000 },
-    // fileFilter: function (req, file, cb) {
-    //     checkFileType(file, cb);
-    // }
+    limits: { fileSize: 5000000 },
+    fileFilter: function (req, file, cb) {
+        checkFileType(file, cb);
+    }
 }).single('song');
 
-// check file type
-// function checkFileType(file, cb) {
-//     const fileTypes = /jpeg|jpg|png|gif/;
-//     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+//check file type
+function checkFileType(file, cb) {
+    const fileTypes = /mp3|m4a|oga|mp4/;
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
 
-//     const mimeType = fileTypes.test(file.mimetype)
+    const mimeType = fileTypes.test(file.mimetype)
 
-//     if (mimeType && extname) {
-//         return cb(null, true);
-//     } else {
-//         cb('Error:Images Only!');
-//     }
-// }
+    if (mimeType && extname) {
+        return cb(null, true);
+    } else {
+        cb('Error:Images Only!');
+    }
+}
 
-app.post('/upload', (req, res) => {
+app.post('/upload',isLoggedIn, (req, res) => {
     upload(req, res, (err) => {
         if (err) {
-            res.send({ error: 'An error ocurred' });
+            res.redirect('/upload');
         } else {
-            console.log(req.body);
             var song = '/uploads/' + req.file.filename
             db.song.create({
                 username:req.body.name,
@@ -168,12 +170,27 @@ app.post('/upload', (req, res) => {
                 short_description: req.body.short_description,
                 long_description : req.body.long_description,
                 song: song
+            }).then(song=>{
+                res.redirect('/music/' + song._id)
             });
-            res.redirect('/')
             // res.send({ statusText: 'Uploaded Successfully', statusCode: 200 });
         }
     })
-})
+});
+
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/signup');
+}
+
+
+app.get('/songs',(req,res)=>{
+   db.song.find().then(songs=>{
+       res.render('songs',{songs:songs});
+   });
+});
 
 
 //listen 
