@@ -11,7 +11,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
-	<link rel="stylesheet" href="assets/css/main.css"/>
+	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
@@ -40,7 +40,8 @@
 					</header>
 					<p style="color:#4799eb">Share your<strong class="animated fadeInDown" style="color:pink"> Music </strong><span
 						 style="color:pink;font-weight: bolder">|</span> Share your <strong class="animated fadeInDown" style="color:pink">
-							Voice </strong><span style="color:pink;font-weight: bolder">|</span> Get<strong class="animated fadeInDown" style="color:pink">
+							Voice </strong><span style="color:pink;font-weight: bolder">|</span> Get<strong class="animated fadeInDown"
+						 style="color:pink">
 							Heard</strong></p>
 					<a href="#work" class="button large scrolly">Listen</a>
 				</div>
@@ -58,19 +59,28 @@
 			<div class="row aln-center">
 				<% for(var i = songs.length - 1; i >= songs.length - 3 ; i --){ %>
 				<div class="col-12 col-12-medium col-12-small">
-					<a href="/music/<%= songs[i]._id %>" style="text-decoration:none"><section class="box style1 animated fadeIn wow">
-						<!-- <span class="icon featured fa-comments-o"></span> -->
-						<h3><%= songs[i].username %> <br> <%= songs[i].title %></h3>
-						<p><%= songs[i].short_description %></p>
-						<span class="icon fa-thumbs-o-up" style="
+					<a href="/music/<%= songs[i]._id %>" style="text-decoration:none">
+						<section class="box style1 animated fadeIn wow">
+							<!-- <span class="icon featured fa-comments-o"></span> -->
+							<h3>
+								<%= songs[i].username %> <br>
+								<%= songs[i].title %>
+							</h3>
+							<p>
+								<%= songs[i].short_description %>
+							</p>
+							<span class="icon fa-thumbs-o-up" style="
 								color: palegreen;
 								margin: 6px;
-							"><%= songs[i].likes %></span>
+							">
+								<%= songs[i].likes %></span>
 							<% for(var l = 0; l < songs[i].genres.length ; l ++){ %>
-						<span style="background:tomato" class="genre"><%= songs[i].genres[l] %></span>
-						<% } %>
-						
-					</section></a>
+							<span style="background:tomato" class="genre">
+								<%= songs[i].genres[l] %></span>
+							<% } %>
+
+						</section>
+					</a>
 				</div>
 				<% } %>
 			</div>
@@ -134,7 +144,58 @@
 			</div> -->
 			<footer>
 				<p>Help us serve you better</p>
-				<a href="#contact" class="button large scrolly">Donate to this platform</a>
+				<p>Donate to the platform</p>
+				<!-- <a href="#contact" class="button large scrolly">Donate to this platform</a> -->
+				<form>
+					<div class="row">
+						<div class="col-4 col-12-small">
+							<input style="background:whitesmoke" type="text" required name="Email" id="email" placeholder="Email" />
+						</div>
+						<div class="col-4 col-12-small">
+							<input style="background:whitesmoke" type="text" required name="amount" id="amount" placeholder="Amount" />
+						</div>
+						<div class="col-4 col-12-small">
+							<input style="background:whitesmoke" type="text" required name="phone" id="phone" placeholder="PhoneNumber" />
+						</div>
+					</div>
+					<br>
+					<script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+					<button type="button" onClick="payWithRave()">Donate</button>
+				</form>
+
+				<script>
+					const API_publicKey = "FLWPUBK-4b269be60dcfd59088f42e10cfc2f43a-X";
+
+					function payWithRave() {
+						var x = getpaidSetup({
+							PBFPubKey: API_publicKey,
+							customer_email: document.querySelector('#email').value,
+							amount: Number(document.querySelector('#amount').value),
+							customer_phone: document.querySelector('#phone').value,
+							currency: "USD",
+							txref: "rave-123456",
+							meta: [{
+								metaname: "flightID",
+								metavalue: "AP1234"
+							}],
+							onclose: function () { },
+							callback: function (response) {
+								var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
+								console.log("This is the response returned after a charge", response);
+								if (
+									response.tx.chargeResponseCode == "00" ||
+									response.tx.chargeResponseCode == "0"
+								) {
+									// redirect to a success page
+								} else {
+									// redirect to a failure page.
+								}
+
+								x.close(); // use this to close the modal immediately after payment.
+							}
+						});
+					}
+				</script>
 			</footer>
 		</div>
 	</article>
@@ -145,7 +206,7 @@
 			<header>
 				<!-- <h2>Have me make stuff for you.</h2> -->
 				<p>Made by <a target="blank" href="https://twitter.com/phirmware">@phirmware</a></p>
-			<!-- </header>
+				<!-- </header>
 			<div class="row">
 				<div class="col-12">
 					<form method="post" action="#">
@@ -182,7 +243,7 @@
 						<li><a href="#" class="icon fa-tumblr"><span class="label">Tumblr</span></a></li>
 						<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
 						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li> -->
-						<!--
+				<!--
 								<li><a href="#" class="icon fa-rss"><span>RSS</span></a></li>
 								<li><a href="#" class="icon fa-instagram"><span>Instagram</span></a></li>
 								<li><a href="#" class="icon fa-foursquare"><span>Foursquare</span></a></li>
@@ -193,11 +254,11 @@
 								<li><a href="#" class="icon fa-flickr"><span>Flickr</span></a></li>
 								<li><a href="#" class="icon fa-vimeo"><span>Vimeo</span></a></li>
 								-->
-					<!-- </ul>
+				<!-- </ul>
 					<hr />
 				</div>
 			</div> -->
-			<!-- <footer>
+				<!-- <footer>
 				<ul id="copyright">
 					<li>&copy; Untitled. All rights reserved.</li>
 					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
@@ -210,7 +271,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
 	</script>
 	<script>
-	  new WOW().init();
+		new WOW().init();
 	</script>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>

@@ -133,8 +133,58 @@
 				</div>
 			</div> -->
 			<footer>
-				<p>Help us serve you better</p>
-				<a href="#contact" class="button large scrolly">Donate to this platform</a>
+                <p>Help us serve you better</p>
+                <p>Donate to the platform</p>
+                <form>
+                        <div class="row">
+                            <div class="col-4 col-12-small">
+                                <input style="background:whitesmoke" type="text" required name="Email" id="email" placeholder="Email" />
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <input style="background:whitesmoke" type="text" required name="amount" id="amount" placeholder="Amount" />
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <input style="background:whitesmoke" type="text" required name="phone" id="phone" placeholder="PhoneNumber" />
+                            </div>
+                        </div>
+                        <br>
+                        <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+                        <button type="button" onClick="payWithRave()">Donate</button>
+                    </form>
+    
+                    <script>
+                        const API_publicKey = "FLWPUBK-4b269be60dcfd59088f42e10cfc2f43a-X";
+    
+                        function payWithRave() {
+                            var x = getpaidSetup({
+                                PBFPubKey: API_publicKey,
+                                customer_email: document.querySelector('#email').value,
+                                amount: Number(document.querySelector('#amount').value),
+                                customer_phone: document.querySelector('#phone').value,
+                                currency: "USD",
+                                txref: "rave-123456",
+                                meta: [{
+                                    metaname: "flightID",
+                                    metavalue: "AP1234"
+                                }],
+                                onclose: function () { },
+                                callback: function (response) {
+                                    var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
+                                    console.log("This is the response returned after a charge", response);
+                                    if (
+                                        response.tx.chargeResponseCode == "00" ||
+                                        response.tx.chargeResponseCode == "0"
+                                    ) {
+                                        // redirect to a success page
+                                    } else {
+                                        // redirect to a failure page.
+                                    }
+    
+                                    x.close(); // use this to close the modal immediately after payment.
+                                }
+                            });
+                        }
+                    </script>
 			</footer>
 		</div>
 	</article>
