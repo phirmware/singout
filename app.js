@@ -74,10 +74,11 @@ app.post("/signup", (req, res) => {
         req.body.password,
         (err, user) => {
             if (err) {
-                res.render('signup', { msg: err });
-            } else {
-                res.redirect('/upload');
+                return res.render('signup', { msg: err });
             }
+            passport.authenticate("local")(req,res,()=>{
+                res.redirect('/upload');
+            })
         }
     );
 });
