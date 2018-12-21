@@ -3,11 +3,7 @@ var app = express();
 app.set('view engine', 'ejs');
 var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
-let http = require('http');
-let server = http.createServer(app);
 const passport = require('passport');
-let socketIO = require('socket.io');
-let path = require('path');
 const db = require("./models");
 const localStrategy = require("passport-local").Strategy;
 // const jwt = require("jsonwebtoken");
@@ -16,14 +12,22 @@ const async = require('async');
 const AuthController = {};
 var likeRoute = require('./routes/likes');
 
-passport.use(new localStrategy(db.user.authenticate()));
-passport.serializeUser(db.user.serializeUser());
-passport.deserializeUser(db.user.deserializeUser());
+var cors = require('cors');
+app.use(cors());
+let http = require('http');
+let server = http.createServer(app);
+let socketIO = require('socket.io');
+let path = require('path');
 let io = socketIO(server);
 app.set('io', io);
 io.on('connection', (socket) => {
     console.log('user connected');
 });
+
+passport.use(new localStrategy(db.user.authenticate()));
+passport.serializeUser(db.user.serializeUser());
+passport.deserializeUser(db.user.deserializeUser());
+
 
 //use static files
 app.use(express.static(__dirname + '/views'));
@@ -85,6 +89,10 @@ app.post("/signup", (req, res) => {
 
 app.get('/music/:id',(req,res)=>{
     db.song.findById(req.params.id).then(song=>{
+        song.views = song.views + 1;
+        song.save().then(() => {
+            io.emit('newview');
+        });
         res.render('music',{song:song});
     });
 });

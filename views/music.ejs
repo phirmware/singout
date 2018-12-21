@@ -46,7 +46,7 @@
                             Know </strong><span style="color:yellow;font-weight: bolder">|</span> Likes <strong class="animated fadeInDown"
                             style="color:yellow">
                             <a><span id="likes" onclick="like()" style="cursor:pointer;color: pink" class="icon fa-thumbs-o-up">
-                                    <%= song.likes %></span></a></a></strong></p>
+                                    <%= song.likes %></span></a></a></strong>| Views <span id="views" style="color:yellow;font-weight: bolder;"><%= song.views %></span></p>
                     <audio style="display:none" id="music" controls>
                         <source src="<%= song.song %>" type="audio/ogg">
                         Your browser does not support the audio tag.
@@ -134,7 +134,9 @@
         </div>
     </article>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script>
+        var socket = io();
         // variable to store HTML5 audio element
         var music = document.getElementById('music');
         var pButton = document.getElementById('pButton');
@@ -147,6 +149,18 @@
                 pButton.innerHTML = "Paused";
             }
         }
+
+        socket.on('newlike',function(){
+            $.get('/api/like/<%= song._id %>/likes').then(res=>{
+                document.querySelector('#likes').innerHTML = res['likes'];
+            });
+        });
+
+        socket.on('newview',function(){
+            $.get('/api/like/<%= song._id %>/views').then(res=>{
+                document.querySelector('#views').innerHTML = res['views'];
+            });
+        });
 
 
         function like() {
