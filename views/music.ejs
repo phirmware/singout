@@ -46,7 +46,8 @@
                             Know </strong><span style="color:yellow;font-weight: bolder">|</span> Likes <strong class="animated fadeInDown"
                             style="color:yellow">
                             <a><span id="likes" onclick="like()" style="cursor:pointer;color: pink" class="icon fa-thumbs-o-up">
-                                    <%= song.likes %></span></a></a></strong>| Views <span id="views" style="color:yellow;font-weight: bolder;"><%= song.views %></span></p>
+                                    <%= song.likes %></span></a> |</a></strong> Views <span id="views" style="color:yellow;font-weight: bolder;">
+                            <%= song.views %></span></p>
                     <audio style="display:none" id="music" controls>
                         <source src="<%= song.song %>" type="audio/ogg">
                         Your browser does not support the audio tag.
@@ -79,56 +80,58 @@
             <footer style="margin-bottom:4px;">
                 <p>Donate to the platform</p>
                 <form>
-                        <div class="row">
-                            <div class="col-4 col-12-small">
-                                <input style="background:whitesmoke" type="text" required name="Email" id="email" placeholder="Email" />
-                            </div>
-                            <div class="col-4 col-12-small">
-                                <input style="background:whitesmoke" type="text" required name="amount" id="amount" placeholder="Amount" />
-                            </div>
-                            <div class="col-4 col-12-small">
-                                <input style="background:whitesmoke" type="text" required name="phone" id="phone" placeholder="PhoneNumber" />
-                            </div>
+                    <div class="row">
+                        <div class="col-4 col-12-small">
+                            <input style="background:whitesmoke" type="text" required name="Email" id="email"
+                                placeholder="Email" />
                         </div>
-                        <br>
-                        <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
-                        <button type="button" onClick="payWithRave()">Donate</button>
-                    </form>
-    
-                    <script>
-                        const API_publicKey = "FLWPUBK-4b269be60dcfd59088f42e10cfc2f43a-X";
-    
-                        function payWithRave() {
-                            var x = getpaidSetup({
-                                PBFPubKey: API_publicKey,
-                                customer_email: document.querySelector('#email').value,
-                                amount: Number(document.querySelector('#amount').value),
-                                customer_phone: document.querySelector('#phone').value,
-                                currency: "USD",
-                                txref: "rave-123456",
-                                meta: [{
-                                    metaname: "flightID",
-                                    metavalue: "AP1234"
-                                }],
-                                onclose: function () { },
-                                callback: function (response) {
-                                    var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
-                                    console.log("This is the response returned after a charge", response);
-                                    if (
-                                        response.tx.chargeResponseCode == "00" ||
-                                        response.tx.chargeResponseCode == "0"
-                                    ) {
-                                        // redirect to a success page
-                                    } else {
-                                        // redirect to a failure page.
-                                    }
-    
-                                    x.close(); // use this to close the modal immediately after payment.
-                                }
-                            });
-                        }
-                    </script>
+                        <div class="col-4 col-12-small">
+                            <input style="background:whitesmoke" type="text" required name="amount" id="amount"
+                                placeholder="Amount" />
+                        </div>
+                        <div class="col-4 col-12-small">
+                            <input style="background:whitesmoke" type="text" required name="phone" id="phone"
+                                placeholder="PhoneNumber" />
+                        </div>
+                    </div>
                     <br>
+                    <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+                    <button type="button" onClick="payWithRave()">Donate</button>
+                </form>
+                <script>
+                    const API_publicKey = "FLWPUBK-4b269be60dcfd59088f42e10cfc2f43a-X";
+
+                    function payWithRave() {
+                        var x = getpaidSetup({
+                            PBFPubKey: API_publicKey,
+                            customer_email: document.querySelector('#email').value,
+                            amount: Number(document.querySelector('#amount').value),
+                            customer_phone: document.querySelector('#phone').value,
+                            currency: "USD",
+                            txref: "rave-123456",
+                            meta: [{
+                                metaname: "flightID",
+                                metavalue: "AP1234"
+                            }],
+                            onclose: function () { },
+                            callback: function (response) {
+                                var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
+                                console.log("This is the response returned after a charge", response);
+                                if (
+                                    response.tx.chargeResponseCode == "00" ||
+                                    response.tx.chargeResponseCode == "0"
+                                ) {
+                                    // redirect to a success page
+                                } else {
+                                    // redirect to a failure page.
+                                }
+
+                                x.close(); // use this to close the modal immediately after payment.
+                            }
+                        });
+                    }
+                </script>
+                <br>
                 <p>made by <a target="blank" href="https://twitter.com/phirmware">@phirmware</a></p>
             </footer>
         </div>
@@ -150,14 +153,14 @@
             }
         }
 
-        socket.on('newlike',function(){
-            $.get('/api/like/<%= song._id %>/likes').then(res=>{
+        socket.on('newlike', function () {
+            $.get('/api/like/<%= song._id %>/likes').then(res => {
                 document.querySelector('#likes').innerHTML = res['likes'];
             });
         });
 
-        socket.on('newview',function(){
-            $.get('/api/like/<%= song._id %>/views').then(res=>{
+        socket.on('newview', function () {
+            $.get('/api/like/<%= song._id %>/views').then(res => {
                 document.querySelector('#views').innerHTML = res['views'];
             });
         });
@@ -166,7 +169,7 @@
         function like() {
             $.get('/api/like/<%= song._id %>').then(res => {
                 if (res['statusCode'] == 200) {
-                    var initialNumber = document.querySelector('#likes').textContent;    
+                    var initialNumber = document.querySelector('#likes').textContent;
                     document.querySelector('#likes').innerHTML = Number(initialNumber) + 1
                 }
             });
@@ -180,15 +183,14 @@
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/main.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'UA-130188006-1');
-  </script>
+        gtag('config', 'UA-130188006-1');
+    </script>
 
 </body>
-
 </html>
