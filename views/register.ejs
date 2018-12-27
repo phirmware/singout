@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>SingOut | Upload</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+	<link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <style>
+      /* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.display{
+    display: none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+    </style>
+</head>
+
+<body class="is-preload">
+
+    <div id="loader" class="display"></div>
+
+    <!-- Nav -->
+	<nav id="nav">
+            <ul class="container">
+                <!-- <li><a href="#top">Top</a></li> -->
+                <li><a href="/">Home</a></li>
+                <li><a href="/signup">Signup</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </nav>
+
+        <article id="contact" class="wrapper style4">
+				<div class="container medium">
+					<header>
+						<h2>Register as an artist.</h2>
+                        <p>Complete all requirements.</p>
+                        <!-- <p style="color:rgb(238, 15, 127)">Choose a Picture, this will be used on your page</p> -->
+					</header>
+					<div class="row">
+						<div class="col-12">
+							<form method="post" action="/register">
+								<div class="row">
+									<div class="col-12 col-12-small">
+										<input type="text" style="background:white" required  name="full_name" id="name" placeholder="Full Name" />
+									</div>
+                                        <div class="col-12 col-12-small">
+                                                <input type="text" style="background:white" required name="username" id="name" placeholder="Stage Name" />
+                                        </div>
+                                        <div class="col-12 col-12-small">
+                                                <input type="text" style="background:white" required name="catch_phrase" id="name" placeholder="Catch Phrase e.g Lyrical Gentleman" />
+                                        </div>
+                                        <div class="col-12 col-12-small">
+                                                <input style="background:whitesmoke" required type="password" name="password" id="email" placeholder="Password" />
+                                            </div>
+									<div class="col-12">
+										<textarea style="background:white" required name="short_description" id="message" placeholder="Write a little about yourself"></textarea>
+									</div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Register"/></li>
+											<li><input type="reset" value="Clear Form" class="alt" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-12">
+							<hr />
+							<h3></h3>
+							<ul class="social">
+								<!-- <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+								<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="#" class="icon fa-tumblr"><span class="label">Tumblr</span></a></li>
+								<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+								<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li> -->
+								<!--
+								<li><a href="#" class="icon fa-rss"><span>RSS</span></a></li>
+								<li><a href="#" class="icon fa-instagram"><span>Instagram</span></a></li>
+								<li><a href="#" class="icon fa-foursquare"><span>Foursquare</span></a></li>
+								<li><a href="#" class="icon fa-skype"><span>Skype</span></a></li>
+								<li><a href="#" class="icon fa-soundcloud"><span>Soundcloud</span></a></li>
+								<li><a href="#" class="icon fa-youtube"><span>YouTube</span></a></li>
+								<li><a href="#" class="icon fa-blogger"><span>Blogger</span></a></li>
+								<li><a href="#" class="icon fa-flickr"><span>Flickr</span></a></li>
+								<li><a href="#" class="icon fa-vimeo"><span>Vimeo</span></a></li>
+								-->
+							</ul>
+							<hr />
+						</div>
+					</div>
+					<footer>
+						<ul id="copyright">
+							<li>.</li><li>Made by: <a href="https://twitter.com/phirmware">@phirmware</a></li>
+						</ul>
+					</footer>
+				</div>
+			</article>
+
+
+	<!-- Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
+	</script>
+	<script>
+	  new WOW().init();
+	</script>
+    <script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-130188006-1');
+  </script>
+
+</body>
+
+</html>

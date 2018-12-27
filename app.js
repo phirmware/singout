@@ -54,7 +54,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/like', likeRoute);
-app.use('/api/playlist',playlistRoute);
+app.use('/api/playlist', playlistRoute);
 
 var line = __dirname + '/views'
 app.use(express.static(line))
@@ -216,6 +216,50 @@ app.get('/playlist/:id', (req, res) => {
         res.render('singleplaylist', { playlist: playlist });
     });
 });
+
+app.get('/artists', (req, res) => {
+    db.user.find({ artist: true }).then(artists => {
+        res.render('artists', { artists: artists });
+    });
+});
+
+app.get('/artist/:id',(req,res)=>{
+    db.user.findOne({username:req.params.id}).then(artist=>{
+        db.song.find({username:artist.username}).then(songs => {
+            res.render('artist',{artist:artist,songs:songs});
+        });
+    });
+});
+
+app.get('/register-artist', (req, res) => {
+    res.render('register')
+});
+
+app.post('/register', (req, res) => {
+    if (!req.body.username || !req.body.password) {
+        res.redirect('/signup');
+    } else {
+        db.user.register(
+            new db.user({
+                username: req.body.username,
+                stage_name: req.body.username,
+                short_description: req.body.short_description,
+                artist: true,
+                catch_phrase:req.body.catch_phrase,
+                full_name: req.body.full_name
+            }),
+            req.body.password,
+            (err, user) => {
+                if (err) {
+                    return res.redirect('/register');
+                }
+                passport.authenticate("local")(req, res, () => {
+                    res.redirect('/');
+                })
+            }
+        );
+    }
+})
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {

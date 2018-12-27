@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>SingOut</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+</head>
+
+<body class="is-preload">
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul class="container">
+            <!-- <li><a href="#top">Top</a></li> -->
+            <li><a href="#work">Recent</a></li>
+            <li><a href="/upload">Upload</a></li>
+            <li><a href="/playlists">Playlist</a></li>
+            <li><a href="/artists">Artists</a></li>
+            <!-- <li><a href="#contact">Contact</a></li> -->
+        </ul>
+    </nav>
+    <article id="portfolio" class="wrapper style3">
+        <div class="container">
+            <header>
+                <h2>Artists.</h2>
+                <!-- <p>Proin odio consequat sapien vestibulum consequat lorem dolore feugiat.</p> -->
+            </header>
+            <div class="row">
+                <% for(var i = 0 ; i < artists.length ; i ++){ %>
+                <div class="col-4 col-6-medium col-12-small">
+                    <article class="box style2">
+                        <a href="/artist/<%= artists[i].username %>" class="image featured"><img src="<%= artists[i].thumbnail %>" alt="" /></a>
+                        <h3><a href="/artist/<%= artists[i].username %>"><%= artists[i].stage_name %></a></h3>
+                        <p><%= artists[i].catch_phrase %></p>
+                    </article>
+                </div>
+                <% } %>
+            </div>
+            <footer>
+                <!-- <p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p> -->
+                <a href="/register-artist" class="button large scrolly">Register as an Artist</a>
+            </footer>
+        </div>
+    </article>
+
+    <article id="contact" class="wrapper style4">
+        <div class="container medium">
+            <header>
+                <!-- <h2>Have me make stuff for you.</h2> -->
+                <p>Made by <a target="blank" href="https://twitter.com/phirmware">@phirmware</a></p>
+                <p><a href="//www.dmca.com/Protection/Status.aspx?ID=810763af-08f2-49c3-8dc4-132155b82b53" title="DMCA.com Protection Status"
+                        class="dmca-badge"> <img src="https://images.dmca.com/Badges/dmca_protected_sml_120l.png?ID=810763af-08f2-49c3-8dc4-132155b82b53"
+                            alt="DMCA.com Protection Status" /></a> </p>
+                <!-- </header>
+                <div class="row">
+                    <div class="col-12">
+                        <form method="post" action="#">
+                            <div class="row">
+                                <div class="col-6 col-12-small">
+                                    <input type="text" name="name" id="name" placeholder="Name" />
+                                </div>
+                                <div class="col-6 col-12-small">
+                                    <input type="text" name="email" id="email" placeholder="Email" />
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" name="subject" id="subject" placeholder="Subject" />
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><input type="submit" value="Send Message" /></li>
+                                        <li><input type="reset" value="Clear Form" class="alt" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-12">
+                        <hr />
+                        <h3>Find me on ...</h3>
+                        <ul class="social">
+                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                            <li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="#" class="icon fa-tumblr"><span class="label">Tumblr</span></a></li>
+                            <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+                            <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li> -->
+                <!--
+                                    <li><a href="#" class="icon fa-rss"><span>RSS</span></a></li>
+                                    <li><a href="#" class="icon fa-instagram"><span>Instagram</span></a></li>
+                                    <li><a href="#" class="icon fa-foursquare"><span>Foursquare</span></a></li>
+                                    <li><a href="#" class="icon fa-skype"><span>Skype</span></a></li>
+                                    <li><a href="#" class="icon fa-soundcloud"><span>Soundcloud</span></a></li>
+                                    <li><a href="#" class="icon fa-youtube"><span>YouTube</span></a></li>
+                                    <li><a href="#" class="icon fa-blogger"><span>Blogger</span></a></li>
+                                    <li><a href="#" class="icon fa-flickr"><span>Flickr</span></a></li>
+                                    <li><a href="#" class="icon fa-vimeo"><span>Vimeo</span></a></li>
+                                    -->
+                <!-- </ul>
+                        <hr />
+                    </div>
+                </div> -->
+                <!-- <footer>
+                    <ul id="copyright">
+                        <li>&copy; Untitled. All rights reserved.</li>
+                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                    </ul>
+                </footer> -->
+        </div>
+    </article>
+
+    <!-- Scripts -->
+
+    <script src="https://form.myjotform.com/static/feedback2.js" type="text/javascript">
+        new JotformFeedback({
+            formId: "83370491699571",
+            buttonText: "Get Updates",
+            base: "https://form.myjotform.com/",
+            background: "linear-gradient(to right,#e052a0,#f15c41)",
+            fontFamily: "monospace",
+            fontColor: "#FFFFFF",
+            buttonSide: "right",
+            buttonAlign: "center",
+            type: false,
+            width: 700,
+            height: 500,
+            isCardForm: false
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
+    </script>
+    <script>
+        new WOW().init();
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130188006-1');
+    </script>
+
+</body>
+
+</html>
