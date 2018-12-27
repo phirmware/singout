@@ -304,6 +304,7 @@
             var comment = $('#placed-comment').val()
             $.post("/api/playlist/comment/<%= playlist._id %>", { comment: comment }).then(res => {
                 if (res['statusCode'] == 200) {
+                    $('#placed-comment').val('')
                     newComment =
                         $('#playlist-comments').append("<li style='color:#a7bacd;line-height:24px;vertical-align:baseline;font-size: 17px;margin-top: 14px;font-weight: bold'>" + comment + "</li>")
                 } else { }
