@@ -3,12 +3,13 @@
 <html>
 
 <head>
-	<title>SingOut | Upload</title>
+	<title>SingOut | Playlist</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
 	<link rel="stylesheet" href="assets/css/main.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
     <style>
       /* Center the loader */
 #loader {
@@ -28,6 +29,9 @@
   animation: spin 2s linear infinite;
 }
 
+.cke_reset{
+    border-radius: 5px;
+}
 .display{
     display: none;
 }
@@ -73,6 +77,7 @@
                 <!-- <li><a href="#top">Top</a></li> -->
                 <li><a href="/">Home</a></li>
                 <li><a href="/signup">Signup</a></li>
+                <li><a href="/playlists">Playlists</a></li>
                 <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
         </nav>
@@ -80,35 +85,26 @@
         <article id="contact" class="wrapper style4">
 				<div class="container medium">
 					<header>
-						<h2>Upload your music.</h2>
+						<h2>Share a playlist.</h2>
                         <p>Complete all requirements.</p>
-                        <p style="color:rgb(238, 15, 127)">Maximum size of music 4mb</p>
+                        <!-- <p style="color:rgb(238, 15, 127)">Maximum size of music 4mb</p> -->
 					</header>
 					<div class="row">
 						<div class="col-12">
-							<form method="post" action="/upload" enctype="multipart/form-data">
+							<form method="post" action="/shareplaylist">
 								<div class="row">
 									<div class="col-6 col-12-small">
 										<input type="text" style="background:white" required  name="name" id="name" placeholder="username" />
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="text" style="background:white" required name="title" id="email" placeholder="Song Title" />
                                     </div>
-                                    <div class="col-6 col-12-small">
-                                            <input type="file" name="song" id="name" required style="background:white;padding: 12px;border-radius: 5px" placeholder="Upload song" />
-                                        </div>
-                                        <div class="col-6 col-12-small">
-                                                <input type="text" style="background:white" required name="genres" id="name" placeholder="Genres seperated by comma" />
-                                        </div>
-									<div class="col-12">
+                                    <div class="col-12">
 										<input style="background:white" type="text" required maxlength="100" name="short_description" id="subject" placeholder="Short Description max 100 characters" />
 									</div>
 									<div class="col-12">
-										<textarea style="background:white" required name="long_description" id="message" placeholder="Long Description"></textarea>
+										<textarea style="background:white" required name="long_description" id="editor1" placeholder="Long Description">Share your playlist</textarea>
 									</div>
 									<div class="col-12">
 										<ul class="actions">
-											<li><input type="submit" value="Upload" /></li>
+											<li><input type="submit" value="Share" /></li>
 											<li><input type="reset" value="Clear Form" class="alt" /></li>
 										</ul>
 									</div>
@@ -150,7 +146,12 @@
 			</article>
 
 
-	<!-- Scripts -->
+    <!-- Scripts -->
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace( 'editor1' );
+    </script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
 	</script>
 	<script>

@@ -8,3 +8,4 @@ mongoose.Promise = Promise;
 
 module.exports.user = require('./user');
 module.exports.song = require('./song');
+module.exports.playlist = require('./playlist');

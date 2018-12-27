@@ -10,7 +10,7 @@ const localStrategy = require("passport-local").Strategy;
 const async = require('async');
 // const crypto = require('crypto');
 const AuthController = {};
-var likeRoute = require('./routes/likes');
+
 
 var cors = require('cors');
 app.use(cors());
@@ -18,6 +18,8 @@ let http = require('http');
 let server = http.createServer(app);
 let socketIO = require('socket.io');
 let path = require('path');
+var likeRoute = require('./routes/likes');
+var playlistRoute = require('./routes/playlist');
 let io = socketIO(server);
 app.set('io', io);
 io.on('connection', (socket) => {
@@ -39,7 +41,7 @@ app.use(require('express-session')({
     saveUninitialized: false
 }));
 
-app.use('/api/like',likeRoute);
+
 
 //secret code password = 'Tmx8Y=fEn!A2KF=5cU2#&UaHMJweeUcTSWN5-6pXTUEHpu?Yhv';
 
@@ -51,14 +53,16 @@ app.use(express.static(__dirname + '/public'));
 // use body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api/like', likeRoute);
+app.use('/api/playlist',playlistRoute);
 
 var line = __dirname + '/views'
 app.use(express.static(line))
 
 // root route
 app.get('/', (req, res) => {
-    db.song.find().then(songs=>{
-        res.render('index',{songs:songs});
+    db.song.find().then(songs => {
+        res.render('index', { songs: songs });
     });
 });
 
@@ -80,20 +84,20 @@ app.post("/signup", (req, res) => {
             if (err) {
                 return res.render('signup', { msg: err });
             }
-            passport.authenticate("local")(req,res,()=>{
+            passport.authenticate("local")(req, res, () => {
                 res.redirect('/upload');
             })
         }
     );
 });
 
-app.get('/music/:id',(req,res)=>{
-    db.song.findById(req.params.id).then(song=>{
+app.get('/music/:id', (req, res) => {
+    db.song.findById(req.params.id).then(song => {
         song.views = song.views + 1;
         song.save().then(() => {
             io.emit('newview');
         });
-        res.render('music',{song:song});
+        res.render('music', { song: song });
     });
 });
 
@@ -128,7 +132,7 @@ AuthController.login = async (req, res) => {
     }
 };
 
-app.get('/upload',isLoggedIn, (req, res) => {
+app.get('/upload', isLoggedIn, (req, res) => {
     res.render('upload');
 });
 
@@ -166,20 +170,20 @@ function checkFileType(file, cb) {
     }
 }
 
-app.post('/upload',isLoggedIn, (req, res) => {
+app.post('/upload', isLoggedIn, (req, res) => {
     upload(req, res, (err) => {
         if (err) {
             res.redirect('/upload');
         } else {
             var song = '/uploads/' + req.file.filename
             db.song.create({
-                username:req.body.name,
-                title:req.body.title,
+                username: req.body.name,
+                title: req.body.title,
                 genres: req.body.genres.split(','),
                 short_description: req.body.short_description,
-                long_description : req.body.long_description,
+                long_description: req.body.long_description,
                 song: song
-            }).then(song=>{
+            }).then(song => {
                 res.redirect('/music/' + song._id)
             });
             // res.send({ statusText: 'Uploaded Successfully', statusCode: 200 });
@@ -187,18 +191,44 @@ app.post('/upload',isLoggedIn, (req, res) => {
     })
 });
 
-function isLoggedIn(req,res,next){
-    if(req.isAuthenticated()){
+app.get('/playlists', (req, res) => {
+    db.playlist.find().then(playlists => {
+        res.render('playlist', { playlists: playlists });
+    });
+});
+
+app.get('/shareplaylist', (req, res) => {
+    res.render('shareplaylist');
+});
+
+app.post('/shareplaylist', (req, res) => {
+    db.playlist.create({
+        username: req.body.name,
+        short_description: req.body.short_description,
+        long_description: req.body.long_description
+    }).then(playlist => {
+        res.redirect('/playlist/' + playlist._id);
+    });
+});
+
+app.get('/playlist/:id', (req, res) => {
+    db.playlist.findById(req.params.id).then(playlist => {
+        res.render('singleplaylist', { playlist: playlist });
+    });
+});
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect('/signup');
 }
 
 
-app.get('/songs',(req,res)=>{
-   db.song.find().then(songs=>{
-       res.render('songs',{songs:songs});
-   });
+app.get('/songs', (req, res) => {
+    db.song.find().then(songs => {
+        res.render('songs', { songs: songs });
+    });
 });
 
 
