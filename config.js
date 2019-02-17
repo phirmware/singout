@@ -9,7 +9,7 @@ enviroment.development = {
 enviroment.production = {
     'port':3000,
     'envName':'production',
-    'DB':'mongodb://phirmware:itachi1@ds135061.mlab.com:35061/crypto'
+    'DB':'mongodb://localhost/singOut'
 }
 
 // Check for present env
