@@ -16,6 +16,6 @@ enviroment.production = {
 var currentEnviroment = typeof(process.env.NODE_ENV) == 'string' ? process.env.NODE_ENV.toLowerCase() : false;
 
 // Env to export
-var envToExport = typeof(enviroment[process.env.NODE_ENV]) == 'object' ? enviroment[process.env.NODE_ENV] : enviroment['development'];
+var envToExport = typeof(enviroment[currentEnviroment]) == 'object' ? enviroment[currentEnviroment] : enviroment['development'];
 
 module.exports = envToExport;
