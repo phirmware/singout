@@ -3,90 +3,99 @@
 <html>
 
 <head>
-	<title>SingOut</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <title>SingOut</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
 <body class="is-preload">
 
-	<!-- Nav -->
-	<nav id="nav">
-		<ul class="container">
-			<!-- <li><a href="#top">Top</a></li> -->
-			<li><a href="/">Home</a></li>
+    <!-- Nav -->
+    <nav id="nav">
+        <ul class="container">
+            <!-- <li><a href="#top">Top</a></li> -->
+            <li><a href="/">Home</a></li>
             <li><a href="/songs">songs</a></li>
             <li><a href="#work">Playlists</a></li>
             <li><a href="/artists">Artists</a></li>
-			<!-- <li><a href="#contact">Contact</a></li> -->
-		</ul>
-	</nav>
+            <!-- <li><a href="#contact">Contact</a></li> -->
+        </ul>
+    </nav>
 
-	<!-- Home -->
-	<article id="top" class="wrapper style1">
-		<div class="container">
-			<div class="row">
-				<div class="col-4 col-5-large col-12-medium">
-					<span class="image fit"><img src="images/playlist.jpg" alt="" /></span>
-				</div>
-				<div class="col-8 col-7-large col-12-medium">
-					<header>
-						<h1 style="color:white">Share a <strong class="animated flipInX" style="color:white">Playlist</strong>.</h1>
-					</header>
-					<p style="color:#4799eb">Is your playlist the<strong class="animated fadeInDown" style="color:yellow"> best </strong><span
-						 style="color:yellow;font-weight: bolder">|</span> Lets talk about <strong class="animated fadeInDown" style="color:yellow">
-							it </strong><span style="color:yellow;font-weight: bolder"></span></p>
-					<a href="/shareplaylist" class="button large scrolly">Share a playlist</a>
-				</div>
-			</div>
-		</div>
-	</article>
+    <!-- Home -->
+    <article id="top" class="wrapper style1">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-5-large col-12-medium">
+                    <span class="image fit"><img src="images/playlist.jpg" alt="" /></span>
+                </div>
+                <div class="col-8 col-7-large col-12-medium">
+                    <header>
+                        <h1 style="color:white">Share a <strong class="animated flipInX" style="color:white">Playlist</strong>.</h1>
+                    </header>
+                    <p style="color:#4799eb">Is your playlist the<strong class="animated fadeInDown" style="color:yellow">
+                            best </strong><span style="color:yellow;font-weight: bolder">|</span> Lets talk about
+                        <strong class="animated fadeInDown" style="color:yellow">
+                            it </strong><span style="color:yellow;font-weight: bolder"></span></p>
+                    <a href="/shareplaylist" class="button large scrolly">Share a playlist</a>
+                </div>
+            </div>
+        </div>
+    </article>
 
-	<!-- Work -->
-	<article id="work" class="wrapper style2">
-		<div class="container">
-			<header>
-				<h2 style="color:white">Recent Playlists.</h2>
-				<p style="color:#4799eb">List of recently shared playlist.</p>
-			</header>
-			<div class="row aln-center">
-                    <% for(var i = playlists.length - 1; i >= 0 ; i --){ %>
-                        <div class="col-12 col-12-medium col-12-small">
-                            <a href="/playlist/<%= playlists[i]._id %>" style="text-decoration:none"><section class="box style1 animated fadeIn wow">
-                                <!-- <span class="icon featured fa-comments-o"></span> -->
-                                <h3><%= playlists[i].username %> <br> <%= playlists[i].title %></h3>
-                                <p><%= playlists[i].short_description %></p>
-                                <a href="/playlist/<%= playlists[i]._id %>" style="background: purple;
+    <!-- Work -->
+    <article id="work" class="wrapper style2">
+        <div class="container">
+            <header>
+                <h2 style="color:white">Recent Playlists.</h2>
+                <p style="color:#4799eb">List of recently shared playlist.</p>
+            </header>
+            <div class="row aln-center">
+                <% for(var i = playlists.length - 1; i >= 0 ; i --){ %>
+                <div class="col-12 col-12-medium col-12-small">
+                    <a href="/playlist/<%= playlists[i]._id %>" style="text-decoration:none">
+                        <section class="box style1 animated fadeIn wow">
+                            <!-- <span class="icon featured fa-comments-o"></span> -->
+                            <h3>
+                                <%= playlists[i].username %> <br>
+                                <%= playlists[i].title %>
+                            </h3>
+                            <p>
+                                <%= playlists[i].short_description %>
+                            </p>
+                            <a href="/playlist/<%= playlists[i]._id %>" style="background: purple;
                                 padding: 2px 5px;
-                                border-radius: 5px;text-decoration: none;color: white;font-weight: 600">View Playlist</a>
-                                <br>
-                                <!-- <span class="icon fa-thumbs-o-up" style="
+                                border-radius: 5px;text-decoration: none;color: white;font-weight: 600">View
+                                Playlist</a>
+                            <br>
+                            <!-- <span class="icon fa-thumbs-o-up" style="
                                         color: palegreen;
                                         margin: 6px;
                                     "><%= playlists[i].likes %></span> -->
-                               <!-- Views <span style="color:palegreen"><%= playlists[i].views %> </span> -->
-                            </section></a>
-                        </div>
-                        <% } %>
-			</div>
-			<footer>
-				<!-- <p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p> -->
-				<!-- <a href="/songs" class="button large scrolly">View More</a> -->
-			</footer>
-		</div>
-	</article>
+                            <!-- Views <span style="color:palegreen"><%= playlists[i].views %> </span> -->
+                        </section>
+                    </a>
+                </div>
+                <% } %>
+            </div>
+            <footer>
+                <!-- <p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p> -->
+                <!-- <a href="/songs" class="button large scrolly">View More</a> -->
+            </footer>
+        </div>
+    </article>
 
-	<!-- Portfolio -->
-	<article id="portfolio" class="wrapper style3">
-		<div class="container">
-			<!-- <header>
+    <!-- Portfolio -->
+    <article id="portfolio" class="wrapper style3">
+        <div class="container">
+            <!-- <header>
 				<h2>Here’s some stuff I made recently.</h2>
 				<p>Proin odio consequat sapien vestibulum consequat lorem dolore feugiat.</p>
 			</header> -->
-			<!-- <div class="row">
+            <!-- <div class="row">
 				<div class="col-4 col-6-medium col-12-small">
 					<article class="box style2">
 						<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
@@ -130,73 +139,78 @@
 					</article>
 				</div>
 			</div> -->
-			<footer>
-				<p>Help us serve you better</p>
-				<p>Donate to the platform</p>
-				<!-- <a href="#contact" class="button large scrolly">Donate to this platform</a> -->
-				<form>
-					<div class="row">
-						<div class="col-4 col-12-small">
-							<input style="background:whitesmoke" type="text" required name="Email" id="email" placeholder="Email" />
-						</div>
-						<div class="col-4 col-12-small">
-							<input style="background:whitesmoke" type="text" required name="amount" id="amount" placeholder="Amount" />
-						</div>
-						<div class="col-4 col-12-small">
-							<input style="background:whitesmoke" type="text" required name="phone" id="phone" placeholder="PhoneNumber" />
-						</div>
-					</div>
-					<br>
-					<script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
-					<button type="button" onClick="payWithRave()">Donate</button>
-				</form>
+            <footer>
+                <p>Help us serve you better</p>
+                <p>Donate to the platform</p>
+                <!-- <a href="#contact" class="button large scrolly">Donate to this platform</a> -->
+                <form>
+                    <div class="row">
+                        <div class="col-4 col-12-small">
+                            <input style="background:whitesmoke" type="text" required name="Email" id="email"
+                                placeholder="Email" />
+                        </div>
+                        <div class="col-4 col-12-small">
+                            <input style="background:whitesmoke" type="text" required name="amount" id="amount"
+                                placeholder="Amount" />
+                        </div>
+                        <div class="col-4 col-12-small">
+                            <input style="background:whitesmoke" type="text" required name="phone" id="phone"
+                                placeholder="PhoneNumber" />
+                        </div>
+                    </div>
+                    <br>
+                    <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+                    <button type="button" onClick="payWithRave()">Donate</button>
+                </form>
 
-				
-				<script>
-					const API_publicKey = "FLWPUBK-4b269be60dcfd59088f42e10cfc2f43a-X";
 
-					function payWithRave() {
-						var x = getpaidSetup({
-							PBFPubKey: API_publicKey,
-							customer_email: document.querySelector('#email').value,
-							amount: Number(document.querySelector('#amount').value),
-							customer_phone: document.querySelector('#phone').value,
-							currency: "USD",
-							txref: "rave-123456",
-							meta: [{
-								metaname: "flightID",
-								metavalue: "AP1234"
-							}],
-							onclose: function () { },
-							callback: function (response) {
-								var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
-								console.log("This is the response returned after a charge", response);
-								if (
-									response.tx.chargeResponseCode == "00" ||
-									response.tx.chargeResponseCode == "0"
-								) {
-									// redirect to a success page
-								} else {
-									// redirect to a failure page.
-								}
+                <script>
+                    const API_publicKey = "FLWPUBK-4b269be60dcfd59088f42e10cfc2f43a-X";
 
-								x.close(); // use this to close the modal immediately after payment.
-							}
-						});
-					}
-				</script>
-			</footer>
-		</div>
-	</article>
+                    function payWithRave() {
+                        var x = getpaidSetup({
+                            PBFPubKey: API_publicKey,
+                            customer_email: document.querySelector('#email').value,
+                            amount: Number(document.querySelector('#amount').value),
+                            customer_phone: document.querySelector('#phone').value,
+                            currency: "USD",
+                            txref: "rave-123456",
+                            meta: [{
+                                metaname: "flightID",
+                                metavalue: "AP1234"
+                            }],
+                            onclose: function () { },
+                            callback: function (response) {
+                                var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
+                                console.log("This is the response returned after a charge", response);
+                                if (
+                                    response.tx.chargeResponseCode == "00" ||
+                                    response.tx.chargeResponseCode == "0"
+                                ) {
+                                    // redirect to a success page
+                                } else {
+                                    // redirect to a failure page.
+                                }
 
-	<!-- Contact -->
-	<article id="contact" class="wrapper style4">
-		<div class="container medium">
-			<header>
-				<!-- <h2>Have me make stuff for you.</h2> -->
-				<p>Made by <a target="blank" href="https://twitter.com/phirmware">@phirmware</a></p>
-				<p><a href="//www.dmca.com/Protection/Status.aspx?ID=810763af-08f2-49c3-8dc4-132155b82b53" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120l.png?ID=810763af-08f2-49c3-8dc4-132155b82b53"  alt="DMCA.com Protection Status" /></a> </p>
-				<!-- </header>
+                                x.close(); // use this to close the modal immediately after payment.
+                            }
+                        });
+                    }
+                </script>
+            </footer>
+        </div>
+    </article>
+
+    <!-- Contact -->
+    <article id="contact" class="wrapper style4">
+        <div class="container medium">
+            <header>
+                <!-- <h2>Have me make stuff for you.</h2> -->
+                <p>Made by <a target="blank" href="https://twitter.com/phirmware">@phirmware</a></p>
+                <p><a href="//www.dmca.com/Protection/Status.aspx?ID=810763af-08f2-49c3-8dc4-132155b82b53" title="DMCA.com Protection Status"
+                        class="dmca-badge"> <img src="https://images.dmca.com/Badges/dmca_protected_sml_120l.png?ID=810763af-08f2-49c3-8dc4-132155b82b53"
+                            alt="DMCA.com Protection Status" /></a> </p>
+                <!-- </header>
 			<div class="row">
 				<div class="col-12">
 					<form method="post" action="#">
@@ -233,7 +247,7 @@
 						<li><a href="#" class="icon fa-tumblr"><span class="label">Tumblr</span></a></li>
 						<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
 						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li> -->
-				<!--
+                <!--
 								<li><a href="#" class="icon fa-rss"><span>RSS</span></a></li>
 								<li><a href="#" class="icon fa-instagram"><span>Instagram</span></a></li>
 								<li><a href="#" class="icon fa-foursquare"><span>Foursquare</span></a></li>
@@ -244,61 +258,61 @@
 								<li><a href="#" class="icon fa-flickr"><span>Flickr</span></a></li>
 								<li><a href="#" class="icon fa-vimeo"><span>Vimeo</span></a></li>
 								-->
-				<!-- </ul>
+                <!-- </ul>
 					<hr />
 				</div>
 			</div> -->
-				<!-- <footer>
+                <!-- <footer>
 				<ul id="copyright">
 					<li>&copy; Untitled. All rights reserved.</li>
 					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</footer> -->
-		</div>
-	</article>
+        </div>
+    </article>
 
-	<!-- Scripts -->
+    <!-- Scripts -->
 
-	<script src="https://form.myjotform.com/static/feedback2.js" type="text/javascript">
-		new JotformFeedback({
-		  formId: "83370491699571",
-		  buttonText: "Get Updates",
-		  base: "https://form.myjotform.com/",
-		  background: "linear-gradient(to right,#e052a0,#f15c41)",
-		  fontFamily: "monospace",
-		  fontColor: "#FFFFFF",
-		  buttonSide: "right",
-		  buttonAlign: "center",
-		  type: false,
-		  width: 700,
-		  height: 500,
-		  isCardForm: false
-		});
-	  </script>
-    
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
-	</script>
-	<script>
+    <script src="https://form.myjotform.com/static/feedback2.js" type="text/javascript">
+        new JotformFeedback({
+            formId: "83370491699571",
+            buttonText: "Get Updates",
+            base: "https://form.myjotform.com/",
+            background: "linear-gradient(to right,#e052a0,#f15c41)",
+            fontFamily: "monospace",
+            fontColor: "#FFFFFF",
+            buttonSide: "right",
+            buttonAlign: "center",
+            type: false,
+            width: 700,
+            height: 500,
+            isCardForm: false
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
+    </script>
+    <script>
         new WOW().init();
-	</script>
+    </script>
     <script src="assets/js/jquery.min.js"></script>
     <script>
-       $("html, body").animate({ scrollTop: 500 }, 2000);
+        $("html, body").animate({ scrollTop: 500 }, 2000);
     </script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag() { dataLayer.push(arguments); }
-	  gtag('js', new Date());
-  
-	  gtag('config', 'UA-130188006-1');
-	</script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130188006-1');
+    </script>
 
 </body>
 

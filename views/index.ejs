@@ -19,8 +19,7 @@
 			<!-- <li><a href="#top">Top</a></li> -->
 			<li><a href="#work">Recent</a></li>
 			<li><a href="/upload">Upload</a></li>
-			<li><a href="/playlists">Playlist</a></li>
-			<li><a href="/artists">Artists</a></li>
+			<li><a href="/request">Request<sub class="animated fadeIn" style="background: deeppink;color:white;padding: 4px 4px 7px 4px;border-radius: 5px; animation-iteration-count: infinite;">new</sub></a></li>
 			<!-- <li><a href="#contact">Contact</a></li> -->
 		</ul>
 	</nav>
@@ -69,8 +68,9 @@
 							</p>
 							<a href="/music/<%= songs[i]._id %>" style="background: purple;
 								padding: 2px 5px;
-								border-radius: 5px;text-decoration: none;color: white;font-weight: 600">Listen to song</a>
-								<br>
+								border-radius: 5px;text-decoration: none;color: white;font-weight: 600">Listen
+								to song</a>
+							<br>
 							<span class="icon fa-thumbs-o-up" style="
 								color: palegreen;
 								margin: 6px;
@@ -78,9 +78,10 @@
 								<%= songs[i].likes %></span>
 							<% for(var l = 0; l < songs[i].genres.length ; l ++){ %>
 							<span style="background:tomato" class="genre">
-								<%= songs[i].genres[l] %></span> 
+								<%= songs[i].genres[l] %></span>
 							<% } %>
-							<span style="color:palegreen"><%= songs[i].views %> </span>Views
+							<span style="color:palegreen">
+								<%= songs[i].views %> </span>Views
 						</section>
 					</a>
 				</div>
@@ -165,7 +166,7 @@
 					<button type="button" onClick="payWithRave()">Donate</button>
 				</form>
 
-				
+
 				<script>
 					const API_publicKey = "FLWPUBK-4b269be60dcfd59088f42e10cfc2f43a-X";
 
@@ -209,7 +210,9 @@
 			<header>
 				<!-- <h2>Have me make stuff for you.</h2> -->
 				<p>Made by <a target="blank" href="https://twitter.com/phirmware">@phirmware</a></p>
-				<p><a href="//www.dmca.com/Protection/Status.aspx?ID=810763af-08f2-49c3-8dc4-132155b82b53" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120l.png?ID=810763af-08f2-49c3-8dc4-132155b82b53"  alt="DMCA.com Protection Status" /></a> </p>
+				<p><a href="//www.dmca.com/Protection/Status.aspx?ID=810763af-08f2-49c3-8dc4-132155b82b53" title="DMCA.com Protection Status"
+					 class="dmca-badge"> <img src="https://images.dmca.com/Badges/dmca_protected_sml_120l.png?ID=810763af-08f2-49c3-8dc4-132155b82b53"
+						 alt="DMCA.com Protection Status" /></a> </p>
 				<!-- </header>
 			<div class="row">
 				<div class="col-12">
@@ -275,21 +278,21 @@
 
 	<script src="https://form.myjotform.com/static/feedback2.js" type="text/javascript">
 		new JotformFeedback({
-		  formId: "83370491699571",
-		  buttonText: "Get Updates",
-		  base: "https://form.myjotform.com/",
-		  background: "linear-gradient(to right,#e052a0,#f15c41)",
-		  fontFamily: "monospace",
-		  fontColor: "#FFFFFF",
-		  buttonSide: "right",
-		  buttonAlign: "center",
-		  type: false,
-		  width: 700,
-		  height: 500,
-		  isCardForm: false
+			formId: "83370491699571",
+			buttonText: "Get Updates",
+			base: "https://form.myjotform.com/",
+			background: "linear-gradient(to right,#e052a0,#f15c41)",
+			fontFamily: "monospace",
+			fontColor: "#FFFFFF",
+			buttonSide: "right",
+			buttonAlign: "center",
+			type: false,
+			width: 700,
+			height: 500,
+			isCardForm: false
 		});
-	  </script>
-    
+	</script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
 	</script>
 	<script>
@@ -304,11 +307,11 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
 	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag() { dataLayer.push(arguments); }
-	  gtag('js', new Date());
-  
-	  gtag('config', 'UA-130188006-1');
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-130188006-1');
 	</script>
 
 </body>

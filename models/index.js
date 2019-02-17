@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
+var config = require('../config');
 
 mongoose.set('debug',true);
-//mongoose.connect('mongodb://phirmware:itachi1@ds135061.mlab.com:35061/crypto');
-mongoose.connect('mongodb://localhost/singOut', { useNewUrlParser: true });
+mongoose.connect(config.DB, { useNewUrlParser: true });
 
 mongoose.Promise = Promise;
 
 module.exports.user = require('./user');
 module.exports.song = require('./song');
 module.exports.playlist = require('./playlist');
+module.exports.request = require('./request');

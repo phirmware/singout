@@ -3,15 +3,15 @@
 <html>
 
 <head>
-	<title>SingOut | Playlist</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
-	<link rel="stylesheet" href="assets/css/main.css"/>
+    <title>SingOut | Playlist</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
     <style>
-      /* Center the loader */
+        /* Center the loader */
 #loader {
   position: absolute;
   left: 50%;
@@ -72,57 +72,59 @@
     <div id="loader" class="display"></div>
 
     <!-- Nav -->
-	<nav id="nav">
-            <ul class="container">
-                <!-- <li><a href="#top">Top</a></li> -->
-                <li><a href="/">Home</a></li>
-                <li><a href="/signup">Signup</a></li>
-                <li><a href="/playlists">Playlists</a></li>
-                <!-- <li><a href="#contact">Contact</a></li> -->
-            </ul>
-        </nav>
+    <nav id="nav">
+        <ul class="container">
+            <!-- <li><a href="#top">Top</a></li> -->
+            <li><a href="/">Home</a></li>
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/playlists">Playlists</a></li>
+            <!-- <li><a href="#contact">Contact</a></li> -->
+        </ul>
+    </nav>
 
-        <article id="contact" class="wrapper style4">
-				<div class="container medium">
-					<header>
-						<h2>Share a playlist.</h2>
-                        <p>Complete all requirements.</p>
-                        <!-- <p style="color:rgb(238, 15, 127)">Maximum size of music 4mb</p> -->
-					</header>
-					<div class="row">
-						<div class="col-12">
-							<form method="post" action="/shareplaylist">
-								<div class="row">
-									<div class="col-6 col-12-small">
-										<input type="text" style="background:white" required  name="name" id="name" placeholder="username" />
-                                    </div>
-                                    <div class="col-12">
-										<input style="background:white" type="text" required maxlength="100" name="short_description" id="subject" placeholder="Short Description max 100 characters" />
-									</div>
-									<div class="col-12">
-										<textarea style="background:white" required name="long_description" id="editor1" placeholder="Long Description">Share your playlist</textarea>
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" value="Share" /></li>
-											<li><input type="reset" value="Clear Form" class="alt" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-12">
-							<hr />
-							<h3></h3>
-							<ul class="social">
-								<!-- <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+    <article id="contact" class="wrapper style4">
+        <div class="container medium">
+            <header>
+                <h2>Share a playlist.</h2>
+                <p>Complete all requirements.</p>
+                <!-- <p style="color:rgb(238, 15, 127)">Maximum size of music 4mb</p> -->
+            </header>
+            <div class="row">
+                <div class="col-12">
+                    <form method="post" action="/shareplaylist">
+                        <div class="row">
+                            <div class="col-6 col-12-small">
+                                <input type="text" style="background:white" required name="name" id="name" placeholder="username" />
+                            </div>
+                            <div class="col-12">
+                                <input style="background:white" type="text" required maxlength="100" name="short_description"
+                                    id="subject" placeholder="Short Description max 100 characters" />
+                            </div>
+                            <div class="col-12">
+                                <textarea style="background:white" required name="long_description" id="editor1"
+                                    placeholder="Long Description">Share your playlist</textarea>
+                            </div>
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li><input type="submit" value="Share" /></li>
+                                    <li><input type="reset" value="Clear Form" class="alt" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12">
+                    <hr />
+                    <h3></h3>
+                    <ul class="social">
+                        <!-- <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 								<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 								<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
 								<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
 								<li><a href="#" class="icon fa-tumblr"><span class="label">Tumblr</span></a></li>
 								<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
 								<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li> -->
-								<!--
+                        <!--
 								<li><a href="#" class="icon fa-rss"><span>RSS</span></a></li>
 								<li><a href="#" class="icon fa-instagram"><span>Instagram</span></a></li>
 								<li><a href="#" class="icon fa-foursquare"><span>Foursquare</span></a></li>
@@ -133,45 +135,46 @@
 								<li><a href="#" class="icon fa-flickr"><span>Flickr</span></a></li>
 								<li><a href="#" class="icon fa-vimeo"><span>Vimeo</span></a></li>
 								-->
-							</ul>
-							<hr />
-						</div>
-					</div>
-					<footer>
-						<ul id="copyright">
-							<li>.</li><li>Made by: <a href="https://twitter.com/phirmware">@phirmware</a></li>
-						</ul>
-					</footer>
-				</div>
-			</article>
+                    </ul>
+                    <hr />
+                </div>
+            </div>
+            <footer>
+                <ul id="copyright">
+                    <li>.</li>
+                    <li>Made by: <a href="https://twitter.com/phirmware">@phirmware</a></li>
+                </ul>
+            </footer>
+        </div>
+    </article>
 
 
     <!-- Scripts -->
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
-        CKEDITOR.replace( 'editor1' );
+        CKEDITOR.replace('editor1');
     </script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
-	</script>
-	<script>
-	  new WOW().init();
-	</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
+    </script>
+    <script>
+        new WOW().init();
+    </script>
     <script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188006-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'UA-130188006-1');
-  </script>
+        gtag('config', 'UA-130188006-1');
+    </script>
 
 </body>
 

@@ -33,9 +33,13 @@
                 <% for(var i = 0 ; i < artists.length ; i ++){ %>
                 <div class="col-4 col-6-medium col-12-small">
                     <article class="box style2">
-                        <a href="/artist/<%= artists[i].username %>" class="image featured"><img src="<%= artists[i].thumbnail %>" alt="" /></a>
-                        <h3><a href="/artist/<%= artists[i].username %>"><%= artists[i].stage_name %></a></h3>
-                        <p><%= artists[i].catch_phrase %></p>
+                        <a href="/artist/<%= artists[i].username %>" class="image featured"><img src="<%= artists[i].thumbnail %>"
+                                alt="" /></a>
+                        <h3><a href="/artist/<%= artists[i].username %>">
+                                <%= artists[i].stage_name %></a></h3>
+                        <p>
+                            <%= artists[i].catch_phrase %>
+                        </p>
                     </article>
                 </div>
                 <% } %>

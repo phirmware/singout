@@ -10,6 +10,7 @@ const localStrategy = require("passport-local").Strategy;
 const async = require('async');
 // const crypto = require('crypto');
 const AuthController = {};
+const config = require('./config');
 
 
 var cors = require('cors');
@@ -69,6 +70,17 @@ app.get('/', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render('signup', { msg: '' });
 });
+
+// Request a song
+app.get('/request', (req, res) => {
+    res.render('request');
+});
+
+app.post('/request',(req,res)=>{
+    db.request.create(req.body).then(req=>{
+        res.redirect('/');
+    })
+})
 
 //user signup
 app.post("/signup", (req, res) => {
@@ -223,10 +235,10 @@ app.get('/artists', (req, res) => {
     });
 });
 
-app.get('/artist/:id',(req,res)=>{
-    db.user.findOne({username:req.params.id}).then(artist=>{
-        db.song.find({username:artist.username}).then(songs => {
-            res.render('artist',{artist:artist,songs:songs});
+app.get('/artist/:id', (req, res) => {
+    db.user.findOne({ username: req.params.id }).then(artist => {
+        db.song.find({ username: artist.username }).then(songs => {
+            res.render('artist', { artist: artist, songs: songs });
         });
     });
 });
@@ -245,7 +257,7 @@ app.post('/register', (req, res) => {
                 stage_name: req.body.username,
                 short_description: req.body.short_description,
                 artist: true,
-                catch_phrase:req.body.catch_phrase,
+                catch_phrase: req.body.catch_phrase,
                 full_name: req.body.full_name
             }),
             req.body.password,
@@ -254,8 +266,8 @@ app.post('/register', (req, res) => {
                     return res.redirect('/register');
                 }
                 passport.authenticate("local")(req, res, () => {
-                    res.redirect('/');
-                })
+                    res.redirect('/artist/' + req.body.username);
+                });
             }
         );
     }
@@ -277,6 +289,6 @@ app.get('/songs', (req, res) => {
 
 
 //listen 
-server.listen(port, () => {
-    console.log(`listening at port ${port}`);
+server.listen(config.port, () => {
+    console.log(`listening at port ${config.port} on ${config.envName} server`);
 });
