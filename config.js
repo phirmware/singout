@@ -7,7 +7,7 @@ enviroment.development = {
 }
 
 enviroment.production = {
-    'port':3000,
+    'port':process.env.PORT,
     'envName':'production',
     'DB':'mongodb://localhost/singOut'
 }

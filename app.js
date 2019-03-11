@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 app.set('view engine', 'ejs');
-var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 const passport = require('passport');
 const db = require("./models");
