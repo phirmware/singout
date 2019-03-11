@@ -63,7 +63,9 @@ app.use(express.static(line))
 app.get('/', (req, res) => {
     db.song.find().then(songs => {
         res.render('index', { songs: songs });
-    });
+    }).catch(err => {
+        res.render('index', { songs: {} });
+    })
 });
 
 app.get('/signup', (req, res) => {
@@ -75,8 +77,8 @@ app.get('/request', (req, res) => {
     res.render('request');
 });
 
-app.post('/request',(req,res)=>{
-    db.request.create(req.body).then(req=>{
+app.post('/request', (req, res) => {
+    db.request.create(req.body).then(req => {
         res.redirect('/');
     })
 })
