@@ -3,7 +3,7 @@ var enviroment = {};
 enviroment.development = {
     'port':3000,
     'envName':'development',
-    'DB':'mongodb://localhost/singOut'
+    'DB':'mongodb://mongodb/singOut'
 }
 
 enviroment.production = {

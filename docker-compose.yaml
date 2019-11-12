@@ -1,0 +1,45 @@
+"version": "3"
+
+services:
+  nginx:
+    build:
+      context: ./nginx_config
+      dockerfile: DockerFile
+    ports:
+      - "8080:80"
+    links:
+      - "node1:node1"
+      - "node2:node2"
+    networks:
+      - nodeapp-network
+
+  mongodb:
+    image: mongo
+    networks:
+      - nodeapp-network
+
+  node1:
+    image: "09036229746/singout"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/var/www"
+    links:
+      - "mongodb:mongodb"
+    networks:
+      - nodeapp-network
+
+  node2:
+    image: "09036229746/singout"
+    ports:
+      - "3001:3000"
+    volumes:
+      - ".:/var/www"
+    links:
+      - "mongodb:mongodb"
+    networks:
+      - nodeapp-network
+
+networks:
+  nodeapp-network:
+    driver: bridge

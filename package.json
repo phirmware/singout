@@ -25,7 +25,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"NODE_ENV=production node app.js"
+    "start":"node app.js"
   },
   "author": "",
   "license": "ISC"

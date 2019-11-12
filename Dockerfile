@@ -1,0 +1,17 @@
+FROM node:10.15.1
+
+LABEL maintainer="phirmware"
+
+ENV NODE_ENV=development
+
+ENV PORT=3000
+
+COPY . /var/www
+
+WORKDIR /var/www
+
+RUN npm install
+
+EXPOSE $PORT
+
+ENTRYPOINT  ["npm", "start"]

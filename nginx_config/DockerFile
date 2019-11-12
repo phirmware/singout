@@ -1,0 +1,10 @@
+FROM nginx
+
+LABEL maintainer phirmware
+
+COPY conf.d /etc/nginx/conf/
+
+EXPOSE 80
+
+ENTRYPOINT ["nginx"]
+
