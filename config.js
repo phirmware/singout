@@ -9,7 +9,7 @@ enviroment.development = {
 enviroment.production = {
     'port':process.env.PORT || 3000,
     'envName':'production',
-    'DB':'mongodb://phirmware:itachi1@ds255924.mlab.com:55924/singout'
+    'DB': process.env.DB_URL
 }
 
 // Check for present env
