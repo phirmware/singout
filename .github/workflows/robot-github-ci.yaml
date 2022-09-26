@@ -8,7 +8,7 @@ name: Deploy to Amazon Ecs by Clouddley
             - master
 env:
     AWS_REGION: us-east-1
-    ECR_REPOSITORY: zeus-clouddleytest-422
+    ECR_REPOSITORY: zeus-clouddleytest-423
 jobs:
     deploy:
         name: Deploy
